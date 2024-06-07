@@ -31,43 +31,46 @@ class _HomeState extends State<Home> {
                   shrinkWrap: true,
                   physics:const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return Row(
-                      children: [
-                        Image.asset(
-                          MyAssets.netflix,
-                          height: 100.h,
-                          width: 145.w,
-                          fit: BoxFit.cover,
-                        ).cornerRadius(20),
-                        10.w.widthBox,
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            "Netflix Will Charge Money for Password Sharing".text.maxLines(2).bold.size(16.sp).make(),
-                            10.h.heightBox,
-                            Row(
-                              children: [
-                                const Icon(
-                                  FeatherIcons.clock,
-                                ),
-                                5.w.widthBox,
-                                "6 Months ago".text.size(16.sp).make(),
-                              ],
-                            ),
-                            10.h.heightBox,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                "59 Views".text.size(16.sp).make(),
-                                Icon(
-                                  FeatherIcons.bookmark,
-                                ),
+                    return GestureDetector(
+                      onTap: () => AutoRouter.of(context).push(const HomeDetailsRoute()),
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            MyAssets.netflix,
+                            height: 100.h,
+                            width: 145.w,
+                            fit: BoxFit.cover,
+                          ).cornerRadius(20),
+                          10.w.widthBox,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              "Netflix Will Charge Money for Password Sharing".text.maxLines(2).bold.size(16.sp).make(),
+                              10.h.heightBox,
+                              Row(
+                                children: [
+                                  const Icon(
+                                    FeatherIcons.clock,
+                                  ),
+                                  5.w.widthBox,
+                                  "6 Months ago".text.size(16.sp).make(),
+                                ],
+                              ),
+                              10.h.heightBox,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  "59 Views".text.size(16.sp).make(),
+                                  Icon(
+                                    FeatherIcons.bookmark,
+                                  ),
 
-                              ],
-                            ),
-                          ],
-                        ).expand(),
-                      ],
+                                ],
+                              ),
+                            ],
+                          ).expand(),
+                        ],
+                      ),
                     );
                   },
                   separatorBuilder: (context, index) => SizedBox(
