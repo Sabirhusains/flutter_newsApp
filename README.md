@@ -1,4 +1,4 @@
-# bloc_newsapp
+# flutter_newsapp
 
 A new Flutter project.
 
