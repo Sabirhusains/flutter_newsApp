@@ -1,11 +1,20 @@
+import 'package:bloc_newsapp/data/repositories/auth_repo.dart';
+import 'package:bloc_newsapp/data/repositories/repository.dart';
+import 'package:bloc_newsapp/data/repositories/tags_repo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/constants/my_strings.dart';
 import 'core/themes/app_themes.dart';
 import 'presentation/routers/router_import.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(RepositoryProvider(
+    create: (context)=>Repository(
+        tagsRepo: TagsRepo(),
+      authRepo: AuthRepo(),
+    ),
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

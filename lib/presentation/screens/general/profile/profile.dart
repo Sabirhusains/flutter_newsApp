@@ -18,7 +18,7 @@ class _ProfileState extends State<Profile> {
         actions: [
           IconButton(
               onPressed: () {},
-              icon: const Icon(FeatherIcons.logOut).pOnly(right: 10.w)),
+              icon:const Icon(FeatherIcons.logOut,color: MyColors.white,).pOnly(right: 10.w)),
         ],
       ),
       body: ListView(
@@ -47,11 +47,12 @@ class _ProfileState extends State<Profile> {
                   10.h.heightBox,
                   "Sabirhusain is a Flutter Developer at Tech440.My passion is solving real-world problems through software and I am skilled in creating dynamic and intuitive user interfaces using the Flutter framework."
                       .text
-                      .xl
-                      .bold
+                      .size(14.sp)
+                      .fontWeight(FontWeight.w500)
                       .center
                       .white
                       .make(),
+                  Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -75,6 +76,7 @@ class _ProfileState extends State<Profile> {
                       ),
                     ],
                   ).pSymmetric(h: 20),
+                  20.h.heightBox,
                 ],
               ),
             ),

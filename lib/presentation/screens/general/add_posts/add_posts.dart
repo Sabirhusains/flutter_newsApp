@@ -10,7 +10,7 @@ class AddPosts extends StatefulWidget {
 
 class _AddPostsState extends State<AddPosts> {
 
-  // QuillController _controller = QuillController.basic();
+  // final QuillController _controller = QuillController.basic();
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +21,18 @@ class _AddPostsState extends State<AddPosts> {
         title: "Add Post".text.white.make(),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(FeatherIcons.check,color: Colors.white,))
+          IconButton(onPressed: (){}, icon:const Icon(FeatherIcons.check,color: Colors.white,))
         ],
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding:const EdgeInsets.symmetric(horizontal: 24),
         children: [
           20.h.heightBox,
           Stack(
             alignment: Alignment.bottomRight,
             children: [
-              Image.network("https://i0.wp.com/sunrisedaycamp.org/wp-content/uploads/2020/10/placeholder.png?ssl=1"),
-              IconButton(onPressed: (){}, icon: Icon(FeatherIcons.camera,color: MyColors.primaryColor,)),
+              Image.network("https://i0.wp.com/sunrisedaycamp.org/wp-content/uploads/2020/10/placeholder.png?ssl=1").cornerRadius(10),
+              IconButton(onPressed: (){}, icon:const Icon(FeatherIcons.camera,color: MyColors.primaryColor,)),
             ],
           ),
           10.h.heightBox,
