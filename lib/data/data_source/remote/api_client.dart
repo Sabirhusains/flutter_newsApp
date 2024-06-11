@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc_newsapp/data/data_source/remote/api_constants.dart';
+import 'package:bloc_newsapp/utils/utils.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -23,11 +24,11 @@ class ApiClient{
   /// GET REQUEST
   Future<Response> getRequest(
       {required String path, bool isTokenRequired = false}) async {
-    // if (isTokenRequired == true) {
-    //   var token = await Utils.getToken();
-    //   options.headers = baseOptions.headers
-    //     ..addAll({"Authorization": "Bearer $token"});
-    // }
+    if (isTokenRequired == true) {
+      var token = await Utils.getToken();
+      options.headers = baseOptions.headers
+        ..addAll({"Authorization": "Bearer $token"});
+    }
     try {
       debugPrint("🚀============API REQUEST============🚀");
       debugPrint("Request Url: ${baseOptions.baseUrl + path}");
@@ -54,8 +55,13 @@ class ApiClient{
   /// POST REQUEST
   Future<Response> postRequest(
       {required String path,
-        dynamic body,
-        bool isTokenRequired = false}) async {
+        dynamic body}) async {
+    var token = await Utils.getToken();
+
+    final options =Options(
+      headers: {"Authorization": "Bearer $token"}
+    );
+
     // if (isTokenRequired == true) {
     //   var token = await Utils.getToken();
     //   options.headers = baseOptions.headers
@@ -69,7 +75,7 @@ class ApiClient{
       var response = await dio.post(path, data: body, options: options);
       debugPrint("🔥============API RESPONSE============🔥");
       debugPrint("Status Code: ${response.statusCode}");
-      log("DATA: ${response.data}");
+      log("DATA: ${response.data.toString().substring(0,300)}");
       return response;
     } on DioException catch (e) {
       if (e.response != null) {

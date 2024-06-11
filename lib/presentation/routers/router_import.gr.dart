@@ -19,6 +19,8 @@ import 'package:bloc_newsapp/presentation/screens/general/general_imports.dart'
     as _i2;
 import 'package:bloc_newsapp/presentation/screens/general/home/home_imports.dart'
     as _i3;
+import 'package:bloc_newsapp/presentation/screens/general/home/home_model.dart'
+    as _i10;
 import 'package:bloc_newsapp/presentation/screens/oboard/onboard_imports.dart'
     as _i5;
 import 'package:bloc_newsapp/presentation/screens/splash/splash_import.dart'
@@ -43,9 +45,14 @@ abstract class $AppRouter extends _i8.RootStackRouter {
       );
     },
     HomeDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<HomeDetailsRouteArgs>();
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.HomeDetails(),
+        child: _i3.HomeDetails(
+          key: args.key,
+          post: args.post,
+          imagePath: args.imagePath,
+        ),
       );
     },
     LoginRoute.name: (routeData) {
@@ -107,16 +114,45 @@ class GeneralRoute extends _i8.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.HomeDetails]
-class HomeDetailsRoute extends _i8.PageRouteInfo<void> {
-  const HomeDetailsRoute({List<_i8.PageRouteInfo>? children})
-      : super(
+class HomeDetailsRoute extends _i8.PageRouteInfo<HomeDetailsRouteArgs> {
+  HomeDetailsRoute({
+    _i9.Key? key,
+    required _i10.Post post,
+    required String imagePath,
+    List<_i8.PageRouteInfo>? children,
+  }) : super(
           HomeDetailsRoute.name,
+          args: HomeDetailsRouteArgs(
+            key: key,
+            post: post,
+            imagePath: imagePath,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'HomeDetailsRoute';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i8.PageInfo<HomeDetailsRouteArgs> page =
+      _i8.PageInfo<HomeDetailsRouteArgs>(name);
+}
+
+class HomeDetailsRouteArgs {
+  const HomeDetailsRouteArgs({
+    this.key,
+    required this.post,
+    required this.imagePath,
+  });
+
+  final _i9.Key? key;
+
+  final _i10.Post post;
+
+  final String imagePath;
+
+  @override
+  String toString() {
+    return 'HomeDetailsRouteArgs{key: $key, post: $post, imagePath: $imagePath}';
+  }
 }
 
 /// generated route for

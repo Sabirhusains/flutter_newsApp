@@ -11,13 +11,17 @@ class LoginViewModel{
   final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
+  final VelocityBloc<bool> isLoading= VelocityBloc<bool>(false);
+
+
   login(context)async {
+    isLoading.onUpdateData(true);
     var loginData=await repository.authRepo.userLogin(emailController.text, passwordController.text,context);
 
     if(loginData.accessToken != null){
       Utils.saveToken(loginData.accessToken.toString());
       AutoRouter.of(context).push(const GeneralRoute());
     }
-
+    isLoading.onUpdateData(false);
   }
 }
