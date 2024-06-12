@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:bloc_newsapp/presentation/routers/router_import.gr.dart';
 import 'package:bloc_newsapp/presentation/screens/auth/login/login_imports.dart';
 import 'package:bloc_newsapp/presentation/screens/general/tags/tags_model.dart';
 import 'package:feather_icons/feather_icons.dart';

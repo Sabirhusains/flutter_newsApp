@@ -1,5 +1,8 @@
 part of 'tags_imports.dart';
 
+
+@RoutePage()
+
 class Tags extends StatefulWidget {
   const Tags({Key? key}) : super(key: key);
 
@@ -26,7 +29,7 @@ class _TagsState extends State<Tags> {
         centerTitle: true,
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () => tagsViewModel.getAddTags(context),
               icon: const Icon(
                 FeatherIcons.plus,
                 color: MyColors.white,
@@ -38,7 +41,7 @@ class _TagsState extends State<Tags> {
         bloc: tagsViewModel.tagsModelBloc,
         builder: (context, state) {
           if(state is VelocityInitialState){
-            return Center(
+            return const Center(
               child: CircularProgressIndicator.adaptive(),
             );
           }else if(state is VelocityUpdateState){
@@ -60,9 +63,9 @@ class _TagsState extends State<Tags> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               IconButton(
-                                  onPressed: () {}, icon:const Icon(FeatherIcons.edit2,color: Colors.green,)),
+                                  onPressed: () =>tagsViewModel.getUpdateTags(context,tagsData), icon:const Icon(FeatherIcons.edit2,color: Colors.green,)),
                               IconButton(
-                                  onPressed: () {}, icon:const Icon(FeatherIcons.trash2,color: Colors.red,)),
+                                  onPressed: () => tagsViewModel.deleteTag(context,tagsData.id.toString(),index), icon:const Icon(FeatherIcons.trash2,color: Colors.red,)),
                             ],
                           ),
                         ),
@@ -71,7 +74,7 @@ class _TagsState extends State<Tags> {
                   );
                 });
           }else{
-            return SizedBox();
+            return const SizedBox();
           }
         },
       ),

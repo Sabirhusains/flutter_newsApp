@@ -55,18 +55,13 @@ class ApiClient{
   /// POST REQUEST
   Future<Response> postRequest(
       {required String path,
-        dynamic body}) async {
-    var token = await Utils.getToken();
+        dynamic body,bool isTokenRequired = false}) async {
 
-    final options =Options(
-      headers: {"Authorization": "Bearer $token"}
-    );
-
-    // if (isTokenRequired == true) {
-    //   var token = await Utils.getToken();
-    //   options.headers = baseOptions.headers
-    //     ..addAll({"Authorization": "Bearer $token"});
-    // }
+    if (isTokenRequired == true) {
+      var token = await Utils.getToken();
+      options.headers = baseOptions.headers
+        ..addAll({"Authorization": "Bearer $token"});
+    }
 
     try {
       debugPrint("🚀============API REQUEST============🚀");
@@ -75,7 +70,7 @@ class ApiClient{
       var response = await dio.post(path, data: body, options: options);
       debugPrint("🔥============API RESPONSE============🔥");
       debugPrint("Status Code: ${response.statusCode}");
-      log("DATA: ${response.data.toString().substring(0,300)}");
+      // log("DATA: ${response.data.toString().substring(0,300)}");
       return response;
     } on DioException catch (e) {
       if (e.response != null) {
